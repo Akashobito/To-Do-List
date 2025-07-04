@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>todoList using localstorage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <meta name="viewpoert" content="width = device-width, initial-scale = 1.0">
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+
+  <body>
+
+    <p>
+      TODO List project 
+    </p>
+
+    <div class="todoList-grid">
+      <input placeholder="Enter TODO List" class="js-name-input css-name-input" onkeydown="
+        if(event.key === 'Enter'){
+          add();
+        }
+        ">
+
+      <input type="date" class="js-date-input css-date-input">
+
+      <button class="add-button" onclick="
+        add();
+      ">
+        Add
+      </button>
+    </div>
+
+    <div class="todoList-renderDisplay">
+
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+*{
+  font-family: roboto;
+  font-weight: 500;
+}
+body button {
+  cursor: pointer;
+}
+.todoList-grid,.todoList-renderDisplay {
+  display: grid;
+  grid-template-columns: 200px 200px 100px;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+.todoList-grid {
+  margin-bottom: 20px;
+}
+.todoList-renderDisplay {
+  align-items: center;
+}
+.add-button {
+  background-color: rgb(7, 134, 7);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+.css-name-input{
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+}
+.css-date-input {
+  display: flex;
+  justify-content: center;
+}
+.delete-button {
+  background-color: rgb(149, 21, 21);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
