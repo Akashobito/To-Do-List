@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>todoList using localstorage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <meta name="viewpoert" content="width = device-width, initial-scale = 1.0">
+  </head>
+
+  <style>
+    *{
+      font-family: roboto;
+      font-weight: 500;
+    }
+    body button {
+      cursor: pointer;
+    }
+    .todoList-grid,.todoList-renderDisplay {
+      display: grid;
+      grid-template-columns: 200px 200px 100px;
+      column-gap: 20px;
+      row-gap: 20px;
+    }
+    .todoList-grid {
+      margin-bottom: 20px;
+    }
+    .todoList-renderDisplay {
+      align-items: center;
+    }
+    .add-button {
+      background-color: rgb(7, 134, 7);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .css-name-input{
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 16px;
+    }
+    .css-date-input {
+      display: flex;
+      justify-content: center;
+    }
+    .delete-button {
+      background-color: rgb(149, 21, 21);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+  </style>
+
+  <body>
+
+    <p>
+      TODO List project 
+    </p>
+
+    <div class="todoList-grid">
+      <input placeholder="Enter TODO List" class="js-name-input css-name-input" onkeydown="
+        if(event.key === 'Enter'){
+          add();
+        }
+        ">
+
+      <input type="date" class="js-date-input css-date-input">
+
+      <button class="add-button" onclick="
+        add();
+      ">
+        Add
+      </button>
+    </div>
+
+    <div class="todoList-renderDisplay">
+
+    </div>
+    <script>
+      const todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+      JSON.parse(localStorage.getItem('todoList'));
+
+      renderDisplay();
+
+      function add(){
+        const nameInput = document.querySelector('.js-name-input');
+        let name = nameInput.value || 'undefined';
+        /* if(!name ){
+          name = 'undefined';
+        } */
+
+        const dateInput = document.querySelector('.js-date-input');
+        const date = dateInput.value || 'undefined';
+         /* if(!date ){
+          name = 'undefined';
+        } */
+
+        todoList.push({
+          name,
+          date
+        })
+        console.log(todoList);
+
+        nameInput.value = '';
+
+        storeData();
+
+        renderDisplay();
+      }
+
+      function renderDisplay(){
+        let htmlElement = '';
+        for(let i = 0 ; i < todoList.length; i++){
+          const arrayValue = todoList[i];
+          const name = arrayValue.name;
+          const date = arrayValue.date;
+          let html = `
+            <div>${name}</div>
+            <div>${date}</div>
+            <button onclick="
+              todoList.splice(${i}, 1);
+              renderDisplay();
+              storeData();
+
+            " class="delete-button">Delete</button> `
+          htmlElement += html;
+        }
+      document.querySelector('.todoList-renderDisplay').innerHTML = htmlElement;
+      }  
+
+      function storeData(){
+      localStorage.setItem('todoList',JSON.stringify(todoList));
+
+      }
+
+    </script>
+  </body>
+</html>
